@@ -18,44 +18,26 @@ class ThreadTimer implements Runnable {
 
     @Override
     public void run() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите название события");
+        String eventname = sc.nextLine();
+        System.out.println("Введите длительность таймера часов/минут/секунд");
+        int hourevent = sc.nextInt();
+        int minutevent = sc.nextInt();
+        int secondevent = sc.nextInt();
+        int timeevent = hourevent * 3600 + minutevent * 60 + secondevent;
 
-    String s1 = "Встретить Машу";
-    String s2 = "Заказать пиццу";
-    System.out.println("Напишите действие: ");
-    Scanner sc = new Scanner(System.in);
-    String s3 = sc.nextLine();
+        for (int i = timeevent; i > 0; i--) {
+            int hour = i / 3600;
+            int minute = (i % 3600) / 60;
+            int second = (i % 3600) % 60;
 
-        if (s3.equals(s1)) {
-
-            for (int i = 3750; i > 0; i--) {
-                int hour = i / 3600;
-                int minute = (i % 3600) / 60;
-                int second = (i % 3600) % 60;
-
-                try {
-                    System.out.println("Часов: " + hour + "  " + "Минут:" + minute + "  " + "Секунд:" + second);
-                    Thread.sleep(1000);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                System.out.println(eventname + " " + "Осталось Часов: " + hour + "  " + "Минут:" + minute + "  " + "Секунд:" + second);
+                Thread.sleep(1000);
             }
-        }
-
-        if (s2.equals(s3)) {
-
-            for (int i = 120; i > 0; i--) {
-                int hour = i / 3600;
-                int minute = (i % 3600) / 60;
-                int second = (i % 3600) % 60;
-
-                try {
-                    System.out.println("Часов: " + hour + "  " + "Минут:" + minute + "  " + "Секунд:" + second);
-                    Thread.sleep(1000);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
